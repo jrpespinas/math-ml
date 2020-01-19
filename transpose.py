@@ -18,7 +18,16 @@ def main():
         matrix.append([int(input(f'M[{row+1},{col+1}] = ')) for col in range(cols)])  
         zeros.append([int(0) for i in range(cols)])
     
+    print('\nMatrix A')
+    [print(f'{row}') for row in matrix]
     
+    # swap the rows and columns
+    for i,rows in enumerate(zeros):
+        for j,cols in enumerate(zeros):
+            zeros[i][j] = matrix[j][i]
+    
+    print('\nTransposed')
+    [print(f'{row}') for row in zeros]
 
 if __name__ == '__main__':
     main()
