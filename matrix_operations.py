@@ -2,34 +2,38 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.0.0'
+__version__: '1.0.1'
 __author__: 'Jan Rodolf Espinas'
 
-class MatrixMethods:
+def create_matrix():
+    rows = int(input('Number of rows: '))
+    columns = int(input('Number of columns: '))
 
-    def __init__(self):
-        print('Matrix')
-        self.rows = int(input('Number of rows: '))
-        self.cols = int(input('Number of columns: '))
+    input_matrix = []
 
-    def create_matrix(self):
-        print(f'M[{self.rows}x{self.cols}]')
-        matrix = []
-        for i in range(0,self.rows):
-            matrix.append([int(input(f'M[{i+1},{j+1}] = ')) for j in range(3)])  
-        
-        self.matrix = matrix
+    for row in range(0,rows):
+        input_matrix.append([int(input(f'M[{row+1},{col+1}] = ')) \
+        for col in range(columns)])  
+
+    return input_matrix
+
+def transpose_matrix(matrix):
+    rows = len(matrix)
+    columns = len(matrix[0])
+
+    transposed_matrix = []
     
-    def print_matrix(self):
-        print('\nMatrix A')
-        for rows in self.matrix:
-            print(f'\t{rows}')
+    for col in range(0, columns):
+        transposed_matrix.append([matrix[i][col] for i in range(rows)])
 
+    return transposed_matrix
 
-def main():
-    A = MatrixMethods()
-    A.create_matrix()
-    A.print_matrix()
+def display_matrix(matrix):
+    print('\n')
+    [print(row) for row in matrix]
 
 if __name__ == '__main__':
-    main()
+    A = create_matrix()
+    display_matrix(A)
+    A = transposed_matrix(A)
+    display_matrix(A)
