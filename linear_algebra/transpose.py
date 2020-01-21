@@ -11,15 +11,16 @@ def main():
     columns = int(input('Number of columns: '))
 
     input_matrix = []
+    transposed_matrix = []
+
     # input values of the matrix per element
     for row in range(0,rows):
         input_matrix.append([int(input(f'M[{row+1},{col+1}] = ')) \
         for col in range(columns)])  
 
     print('\nInput Matrix')
-    [print(f'{row}') for row in input_matrix]
+    [print(row) for row in input_matrix]
 
-    transposed_matrix = []
     # transpose matrix
     for col in range(0, columns):
         transposed_matrix.append([input_matrix[i][col] for i in range(rows)])

@@ -32,6 +32,13 @@ def display_matrix(matrix):
     print('\n')
     [print(row) for row in matrix]
 
+def matrix_multiplication(matrix_one, matrix_two):
+    if len(matrix_one[0]) == len(matrix_two):
+        print('It can be multiplied')
+        transpose_matrix(matrix_two)
+    else:
+        print('The matrix can not be multiplied.\n Be sure to input the right dimensions of both matrix.')
+
 if __name__ == '__main__':
     A = create_matrix()
     display_matrix(A)
