@@ -2,31 +2,24 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.0.1'
+__version__: '1.0.2'
 __author__: 'Jan Rodolf Espinas'
 
-def main():
-    print("Matrix")
-    rows = int(input('Number of rows: '))
-    columns = int(input('Number of columns: '))
+# import local file containing matrix operations
+import matrix_operations
 
-    input_matrix = []
+def transpose(matrix):
+    rows = len(matrix)
+    columns = len(matrix[0])
+
     transposed_matrix = []
-
-    # input values of the matrix per element
-    for row in range(0,rows):
-        input_matrix.append([int(input(f'M[{row+1},{col+1}] = ')) \
-        for col in range(columns)])  
-
-    print('\nInput Matrix')
-    [print(row) for row in input_matrix]
-
-    # transpose matrix
+    
     for col in range(0, columns):
-        transposed_matrix.append([input_matrix[i][col] for i in range(rows)])
+        transposed_matrix.append([matrix[i][col] for i in range(rows)])
 
-    print('\nTransposed')
-    [print(row) for row in transposed_matrix]
+    return transposed_matrix
 
 if __name__ == '__main__':
-    main()
+    A = matrix_operations.create_matrix()
+    transpose(A)
+    matrix_operations.display(A)
