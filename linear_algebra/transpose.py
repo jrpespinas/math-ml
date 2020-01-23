@@ -30,7 +30,10 @@ def transpose(matrix):
     transposed_matrix = []
     
     for col in range(0, columns):
-        transposed_matrix.append([matrix[i][col] for i in range(rows)])
+        transposed_matrix.append([
+            matrix[i][col] 
+            for i in range(rows)
+        ])
 
     return transposed_matrix
 

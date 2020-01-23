@@ -54,7 +54,10 @@ def transpose(matrix):
     transposed_matrix = []
     
     for col in range(0, columns):
-        transposed_matrix.append([matrix[i][col] for i in range(rows)])
+        transposed_matrix.append([
+            matrix[row][col] 
+            for row in range(rows)
+        ])
 
     return transposed_matrix
 
@@ -84,8 +87,10 @@ def add(matrix_one, matrix_two):
 
         sum = []
         for row in range(rows):
-            sum.append([matrix_one[row][column] + matrix_two[row][column] \
-            for column in range(columns)])
+            sum.append([
+                matrix_one[row][col] + matrix_two[row][col]
+                for col in range(columns)
+            ])
 
         return sum
 
@@ -119,8 +124,10 @@ def matrix_mul(matrix_one, matrix_two):
         matrix_two = transpose_matrix(matrix_two)
         
         for row in range(product_rows):
-            product.append([(row,column) \
-            for column in range(product_columns)])
+            product.append([
+                (row,col)
+                for col in range(product_columns)
+            ])
 
         return product
 
@@ -154,8 +161,10 @@ def element_wise_product(matrix_one, matrix_two):
 
         hadamard_product = []
         for row in range(rows):
-            hadamard_product.append([matrix_one[row][column] * matrix_two[row][column] \
-            for column in range(columns)])
+            hadamard_product.append([
+                matrix_one[row][col] * matrix_two[row][col]
+                for col in range(columns)
+            ])
 
         return hadamard_product
 
@@ -170,5 +179,5 @@ def display(matrix):
 if __name__ == '__main__':
     A = create_matrix()
     B = create_matrix()
-    c = add(A,B)
+    c = element_wise_product(A,B)
     display(c)

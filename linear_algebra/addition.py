@@ -33,8 +33,10 @@ def add(matrix_one, matrix_two):
 
         sum = []
         for row in range(rows):
-            sum.append([matrix_one[row][column] + matrix_two[row][column] \
-            for column in range(columns)])
+            sum.append([
+                matrix_one[row][column] + matrix_two[row][column]
+                for column in range(columns)
+            ])
 
         return sum
 
