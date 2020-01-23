@@ -32,6 +32,23 @@ def display(matrix):
     print('\n')
     [print(row) for row in matrix]
 
+def add(matrix_one, matrix_two):
+    if (len(matrix_one[0]) == len(matrix_two[0])) \
+    and (len(matrix_one) == len(matrix_two)):
+
+        rows = len(matrix_one)
+        columns = len(matrix_one[0])
+
+        sum = []
+        for row in range(rows):
+            sum.append([matrix_one[row][column] + matrix_two[row][column] \
+            for column in range(columns)])
+
+        return sum
+
+    else:
+        print("Dimensions are not matched")
+
 def matrix_mul(matrix_one, matrix_two):
     if len(matrix_one[0]) == len(matrix_two):
         product_matrix = []
@@ -60,4 +77,4 @@ def vector_mul(vector_one, vector_two):
 if __name__ == '__main__':
     A = create_matrix()
     B = create_matrix()
-    vector_multiplication(A,B)
+    add(A,B)
