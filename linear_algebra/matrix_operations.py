@@ -128,8 +128,42 @@ def matrix_mul(matrix_one, matrix_two):
         print('The matrix can not be multiplied.\n \
          Be sure to input the right dimensions of both matrix.')
 
+def element_wise_product(matrix_one, matrix_two):
+    """
+    Returns `hadamard_product` from a pair of matrix
+    with matching dimensions.
+
+    Parameters
+    ----------
+    matrix_one : list
+        The given left-hand side matrix.
+    matrix_two : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    hadamard_product : list
+        The element wise product of two given matrix.
+
+    """
+    if (len(matrix_one[0]) == len(matrix_two[0])) \
+    and (len(matrix_one) == len(matrix_two)):
+
+        rows = len(matrix_one)
+        columns = len(matrix_one[0])
+
+        hadamard_product = []
+        for row in range(rows):
+            sum.append([matrix_one[row][column] * matrix_two[row][column] \
+            for column in range(columns)])
+
+        return hadamard_product
+
+    else:
+        print("Dimensions are not matched")
+
 def display(matrix):
-    """Prints a matrix given a parameter `matrix` which is a list of int."""
+    """Prints a `matrix` in a presentable manner."""
     print('\n')
     [print(row) for row in matrix]
 
