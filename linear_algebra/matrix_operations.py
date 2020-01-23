@@ -154,7 +154,7 @@ def element_wise_product(matrix_one, matrix_two):
 
         hadamard_product = []
         for row in range(rows):
-            sum.append([matrix_one[row][column] * matrix_two[row][column] \
+            hadamard_product.append([matrix_one[row][column] * matrix_two[row][column] \
             for column in range(columns)])
 
         return hadamard_product
