@@ -2,22 +2,52 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.0.2'
+__version__: '1.1.3'
 __author__: 'Jan Rodolf Espinas'
 
 def create_matrix():
+    """
+    Returns `input_matrix` by appending `float` inputs
+    to an empty array provided `rows` and `columns` as the 
+    dimensions.
+
+    Returns
+    -------
+    `input_matrix` : list
+        The input matrix
+
+    Notes
+    -----
+    a `vector` is just a `matrix` with n rows and 1 column or
+    1 row and n columns.
+    """
     rows = int(input('Number of rows: '))
     columns = int(input('Number of columns: '))
 
     input_matrix = []
 
     for row in range(0,rows):
-        input_matrix.append([int(input(f'M[{row+1},{col+1}] = ')) \
+        input_matrix.append([float(input(f'M[{row+1},{col+1}] = ')) \
         for col in range(columns)])  
 
     return input_matrix
 
 def transpose(matrix):
+    """
+    Returns `transposed_matrix` from a given matrix 
+    by appending its contents to an empty list with
+    a switched rows and columns.
+
+    Parameters
+    ----------
+    matrix : list
+        The given matrix.
+
+    Returns
+    -------
+    transposed_matrix : list
+        The transposed matrix
+    """
     rows = len(matrix)
     columns = len(matrix[0])
 
@@ -28,11 +58,24 @@ def transpose(matrix):
 
     return transposed_matrix
 
-def display(matrix):
-    print('\n')
-    [print(row) for row in matrix]
-
 def add(matrix_one, matrix_two):
+    """
+    Returns `sum` from a pair of matrix
+    with matching dimensions.
+
+    Parameters
+    ----------
+    matrix_one : list
+        The given left-hand side matrix.
+    matrix_two : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    sum : list
+        The sum of two given matrix.
+
+    """
     if (len(matrix_one[0]) == len(matrix_two[0])) \
     and (len(matrix_one) == len(matrix_two)):
 
@@ -50,31 +93,48 @@ def add(matrix_one, matrix_two):
         print("Dimensions are not matched")
 
 def matrix_mul(matrix_one, matrix_two):
+    """
+    Returns `product` from a pair of matrix with 
+    a matching number of columns from the first matrix 
+    and rows from the second matrix.
+
+    Parameters
+    ----------
+    matrix_one : list
+        The given left-hand side matrix.
+    matrix_two : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    product : list
+        The product of two given matrix.
+
+    """
     if len(matrix_one[0]) == len(matrix_two):
-        product_matrix = []
-        product_matrix_rows = len(matrix_one)
-        product_matrix_columns = len(matrix_two[0])
+        product = []
+        product_rows = len(matrix_one)
+        product_columns = len(matrix_two[0])
         
         matrix_two = transpose_matrix(matrix_two)
         
-        for row in range(product_matrix_rows):
-            product_matrix.append([(row,column) for column in range(product_matrix_columns)])
+        for row in range(product_rows):
+            product.append([(row,column) \
+            for column in range(product_columns)])
+
+        return product
 
     else:
         print('The matrix can not be multiplied.\n \
          Be sure to input the right dimensions of both matrix.')
 
-    return product_matrix
-
-def vector_mul(vector_one, vector_two):
-    vector_one = transpose(vector_one)
-
-    if len(vector_one[0]) == len(vector_two):
-        display_matrix(vector_one)
-        display_matrix(vector_two)
-
+def display(matrix):
+    """Prints a matrix given a parameter `matrix` which is a list of int."""
+    print('\n')
+    [print(row) for row in matrix]
 
 if __name__ == '__main__':
     A = create_matrix()
     B = create_matrix()
-    add(A,B)
+    c = add(A,B)
+    display(c)

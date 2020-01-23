@@ -8,6 +8,23 @@ __author__: 'Jan Rodolf Espinas'
 import matrix_operations # My linear algebra library
 
 def add(matrix_one, matrix_two):
+    """
+    Returns `sum` from a pair of matrix
+    with matching dimensions.
+
+    Parameters
+    ----------
+    matrix_one : list
+        The given left-hand side matrix.
+    matrix_two : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    sum : list
+        The sum of two given matrix.
+
+    """
     if (len(matrix_one[0]) == len(matrix_two[0])) \
     and (len(matrix_one) == len(matrix_two)):
 
