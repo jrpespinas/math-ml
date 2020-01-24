@@ -7,42 +7,45 @@ __author__: 'Jan Rodolf Espinas'
 
 import matrix_operations # My linear algebra library
 
-def vector_multiplication(matrix_one, matrix_two):
-    matrix_one_rows = len(matrix_one)
-    matrix_one_columns = len(matrix_one[0])
+def dot_product(A, B):
+    A_rows = len(A)
+    A_columns = len(A[0])
 
-    matrix_two_rows = len(matrix_two)
-    matrix_two_columns = len(matrix_two[0])
+    B_rows = len(B)
+    B_columns = len(B[0])
 
-    # inner product
-    if (matrix_one_columns == matrix_two_rows)\
-    and (matrix_one_rows == 1 and matrix_two_columns == 1):
+    if (A_columns == B_rows)\
+    and (A_rows == 1 and B_columns == 1):
 
         dot_product = []
 
-        for row in range(matrix_one_rows):
-            dot_product.append(
-                sum([
-                    matrix_one[row][col]*matrix_two[col][row]
-                    for col in range(matrix_one_columns)
-                ])
-            )
+        # multi-line list comprehension for dot product
+        [dot_product.append(sum(A[i][j]*B[j][i] 
+        for j in range(A_columns))) 
+        for i in range(A_rows)]
  
         return dot_product
+        
+    else:
+        print("dimensions of vector do not match.")
 
-    # outer product
-    elif matrix_one_columns == 1 and matrix_two_rows == 1:
+def outer_product(A, B):    
+    A_rows = len(A)
+    A_columns = len(A[0])
+
+    B_rows = len(B)
+    B_columns = len(B[0])
+    
+    if A_columns == 1 and B_rows == 1:
     
         outer_product = []
 
-        for row in range(matrix_one_rows):
-            outer_product.append([
-                matrix_one[row][0] * matrix_two[0][col]
-                for col in range(matrix_two_columns)
-            ])
+        # multi-line list comprehension for outer product
+        [outer_product.append([A[i][0] * B[0][j] for j in range(B_columns)]) 
+        for i in range(A_rows)]
 
         return outer_product
-    
+
     else:
         print("dimensions of vector do not match.")
 
@@ -50,7 +53,7 @@ if __name__ == '__main__':
     a = matrix_operations.create_matrix()
     b = matrix_operations.create_matrix()
     b = matrix_operations.transpose(b)
-    c = vector_multiplication(a,b)
+    c = outer_product(a,b)
     matrix_operations.display(c)
     
     
