@@ -8,6 +8,23 @@ __author__: 'Jan Rodolf Espinas'
 import matrix_operations # My linear algebra library
 
 def dot_product(A, B):
+    """
+    Returns `dot_product` from a pair of matrix wherein `A` is transposed
+    into a row vector and `B` is a column vector.
+
+    Parameters
+    ----------
+    A : list
+        The given left-hand side transposed matrix.
+    B : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    dot_product : float
+        dot product of two vectors.
+
+    """
     A_rows = len(A)
     A_columns = len(A[0])
 
@@ -23,13 +40,29 @@ def dot_product(A, B):
         [dot_product.append(sum(A[i][j]*B[j][i] 
         for j in range(A_columns))) 
         for i in range(A_rows)]
- 
-        return dot_product
+
+        return float(dot_product[0])
         
     else:
         print("dimensions of vector do not match.")
 
-def outer_product(A, B):    
+def outer_product(A, B):
+    """
+    Returns `outer_product` from a pair of vectors wherein 
+    `B` is transposed into a row vector and `A` is a column vector.
+
+    Parameters
+    ----------
+    A : list
+        The given left-hand side matrix.
+    B : list
+        The given right-hand side transposed matrix.
+
+    Returns
+    -------
+    outer_product : list
+        Returns a matrix.
+    """    
     A_rows = len(A)
     A_columns = len(A[0])
 
@@ -52,8 +85,8 @@ def outer_product(A, B):
 if __name__ == '__main__':
     a = matrix_operations.create_matrix()
     b = matrix_operations.create_matrix()
-    b = matrix_operations.transpose(b)
-    c = outer_product(a,b)
-    matrix_operations.display(c)
+    a = matrix_operations.transpose(a)
+    c = dot_product(a,b)
+    print(c)
     
     
