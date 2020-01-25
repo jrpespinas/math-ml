@@ -7,16 +7,16 @@ __author__: 'Jan Rodolf Espinas'
 
 import matrix_operations # My linear algebra library
 
-def add(matrix_one, matrix_two):
+def add(A, B):
     """
     Returns `sum` from a pair of matrix
     with matching dimensions.
 
     Parameters
     ----------
-    matrix_one : list
+    A : list
         The given left-hand side matrix.
-    matrix_two : list
+    B : list
         The given right-hand side matrix.
 
     Returns
@@ -25,18 +25,17 @@ def add(matrix_one, matrix_two):
         The sum of two given matrix.
 
     """
-    if (len(matrix_one[0]) == len(matrix_two[0])) \
-    and (len(matrix_one) == len(matrix_two)):
+    if (len(A[0]) == len(B[0])) \
+    and (len(A) == len(B)):
 
-        rows = len(matrix_one)
-        columns = len(matrix_one[0])
+        rows = len(A)
+        columns = len(A[0])
 
         sum = []
-        for row in range(rows):
-            sum.append([
-                matrix_one[row][column] + matrix_two[row][column]
-                for column in range(columns)
-            ])
+
+        [sum.append([A[i][j] + B[i][j]
+        for j in range(columns)])
+        for i in range(rows)]
 
         return sum
 
