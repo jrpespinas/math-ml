@@ -284,9 +284,9 @@ if __name__ == '__main__':
     display(C)
 
     #VECTOR-VECTOR (INNER PRODUCT) MULTIPLICATION demo
-    a = [[1,2,3]]
-    b = [[1,2,3]]
-    b = transpose(b)
+    a = [[1],[2],[3]]
+    b = [[1],[2],[3]]
+    a = transpose(a)
     c = dot_product(a,b)
     print("""---------------------
     \nDot Product Multiplication
@@ -299,9 +299,9 @@ if __name__ == '__main__':
     print(f'a.T * b\n{c}')
 
     #VECTOR-VECTOR (OUTER_PRODUCT) MULTIPLICATION demo
-    a = [[1,2,3]]
-    b = [[1,2,3]]
-    a = transpose(a)
+    a = [[1],[2],[3]]
+    b = [[1],[2],[3]]
+    b = transpose(b)
     c = outer_product(a,b)
     print("""---------------------
     \nOuter Product Multiplication
