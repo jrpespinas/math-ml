@@ -45,7 +45,7 @@ def transpose(matrix):
 
     Returns
     -------
-    transposed_matrix : list
+    transposed_matrix : list (matrix)
         The transposed matrix
     """
     rows = len(matrix)
@@ -72,7 +72,7 @@ def add(A, B):
 
     Returns
     -------
-    sum : list
+    sum : list (matrix)
         The sum of two given matrix.
 
     """
@@ -109,7 +109,7 @@ def matrix_mul(A, B):
 
     Returns
     -------
-    product : list
+    product : list (matrix)
         The product of two given matrix.
 
     """
@@ -150,7 +150,7 @@ def dot_product(A, B):
 
     Returns
     -------
-    dot_product : float
+    dot_product : float (scalar)
         dot product of two vectors.
 
     """
@@ -185,7 +185,7 @@ def outer_product(A, B):
 
     Returns
     -------
-    outer_product : list
+    outer_product : list (matrix)
         Returns a matrix.
     """    
     A_rows = len(A)
@@ -222,7 +222,7 @@ def element_wise_product(A, B):
 
     Returns
     -------
-    hadamard_product : list
+    hadamard_product : list (matrix)
         The element wise product of two given matrix.
 
     """
@@ -246,15 +246,117 @@ def element_wise_product(A, B):
 
 def display(matrix):
     """Prints a `matrix` in a presentable manner."""
-
-    print('\n')
     [print(row) for row in matrix]
 
 if __name__ == '__main__':
-    # matrix multiplication demo
+    # MATRIX-MATRIX MULTIPLICATION demo
     A = [[3,1,1],[8,2,7],[6,1,8]]
     B = [[5,3,0],[3,7,0],[7,4,4]]
+    C = matrix_mul(A, B)
+    print("""---------------------
+    \nMatrix-Matrix Multiplication
+    A = [3,1,1],
+        [8,2,7],
+        [6,1,8]
 
-    
-    
+    B = [5,3,0],
+        [3,7,0],
+        [7,4,4]
+    """)
+    print("A * B")
+    display(C)
+
+    # MATRIX-VECTOR_MULTIPLICATION demo
+    A = [[1,2,3],[4,5,6],[7,8,9]]
+    b = [[1],[2],[3]]
+    C = matrix_mul(A, b)
+    print("""---------------------
+    \nMatrix-Vector Multiplication
+    A = [1,2,3],
+        [4,5,6],
+        [7,8,9]
+
+    b = [1],
+        [2],
+        [3]
+    """)
+    print("A * b")
+    display(C)
+
+    #VECTOR-VECTOR (INNER PRODUCT) MULTIPLICATION demo
+    a = [[1,2,3]]
+    b = [[1,2,3]]
+    b = transpose(b)
+    c = dot_product(a,b)
+    print("""---------------------
+    \nDot Product Multiplication
+    a.T = [1,2,3]
+
+    b   =   [1],
+            [2],
+            [3]
+    """)
+    print(f'a.T * b\n{c}')
+
+    #VECTOR-VECTOR (OUTER_PRODUCT) MULTIPLICATION demo
+    a = [[1,2,3]]
+    b = [[1,2,3]]
+    a = transpose(a)
+    c = outer_product(a,b)
+    print("""---------------------
+    \nOuter Product Multiplication
+    a   =   [1],
+            [2],
+            [3]
+
+    b.T   = [1,2,3]
+    """)
+    print("a * b.T")
+    display(c)
+
+    # ELEMENT-WISE MATRIX MULTIPLICATION demo
+    A = [[3,1,1],[8,2,7],[6,1,8]]
+    B = [[5,3,0],[3,7,0],[7,4,4]]
+    C = element_wise_product(A, B)
+    print("""---------------------
+    \nElement-wise Matrix Multiplication
+    A = [3,1,1],
+        [8,2,7],
+        [6,1,8]
+
+    B = [5,3,0],
+        [3,7,0],
+        [7,4,4]
+    """)
+    print("A * B")
+    display(C)
+
+    # MATRIX-MATRIX ADDITION demo
+    A = [[3,1,1],[8,2,7],[6,1,8]]
+    B = [[5,3,0],[3,7,0],[7,4,4]]
+    C = add(A, B)
+    print("""---------------------
+    \nMatrix-Matrix Adition
+    A = [3,1,1],
+        [8,2,7],
+        [6,1,8]
+
+    B = [5,3,0],
+        [3,7,0],
+        [7,4,4]
+    """)
+    print("A + B")
+    display(C)
+
+    # VECTOR-VECTOR ADDITION demo
+    a = [[3,1,1]]
+    b = [[5,3,0]]
+    c = add(a, b)
+    print("""---------------------
+    \nVector-Vector Adition
+    a.T = [3,1,1],
+
+    b.T = [5,3,0],
+    """)
+    print("a.T + b.T")
     display(c)
