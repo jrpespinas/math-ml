@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.1.3'
+__version__: '1.2.4'
 __author__: 'Jan Rodolf Espinas'
 
 def create_matrix():
@@ -26,7 +26,7 @@ def create_matrix():
 
     input_matrix = []
 
-    [input_matrix.append([float(input(f'M[{i+1},{j+1}] = ')) \
+    [input_matrix.append([float(input(f'M[{i+1},{j+1}] = ')) 
     for j in range(columns)])
     for i in range(0,rows)]
 
@@ -53,8 +53,7 @@ def transpose(matrix):
 
     transposed_matrix = []
     
-    [transposed_matrix.append([matrix[j][i] 
-    for j in range(rows)])
+    [transposed_matrix.append([matrix[j][i] for j in range(rows)])
     for i in range(columns)]
 
     return transposed_matrix
@@ -77,24 +76,25 @@ def add(A, B):
         The sum of two given matrix.
 
     """
-    if (len(A[0]) == len(B[0])) \
-    and (len(A) == len(B)):
+    A_rows = len(A)
+    A_columns = len(A[0])
 
-        rows = len(A)
-        columns = len(A[0])
+    B_rows = len(B)
+    B_columns = len(B[0])
+
+    if (A_columns == B_columns) and (A_rows == B_rows):
 
         sum = []
 
-        [sum.append([A[i][j] + B[i][j]
-        for j in range(columns)])
-        for i in range(rows)]
+        [sum.append([A[i][j] + B[i][j] for j in range(A_columns)])
+        for i in range(A_rows)]
 
         return sum
 
     else:
         print("Dimensions are not matched")
 
-def matrix_mul(matrix_one, matrix_two):
+def matrix_mul(A, B):
     """
     Returns `product` from a pair of matrix with 
     a matching number of columns from the first matrix 
@@ -102,9 +102,9 @@ def matrix_mul(matrix_one, matrix_two):
 
     Parameters
     ----------
-    matrix_one : list
+    A : list
         The given left-hand side matrix.
-    matrix_two : list
+    B : list
         The given right-hand side matrix.
 
     Returns
@@ -113,24 +113,28 @@ def matrix_mul(matrix_one, matrix_two):
         The product of two given matrix.
 
     """
-    if len(matrix_one[0]) == len(matrix_two):
+    A_rows = len(A)
+    A_columns = len(A[0])
+
+    B_rows = len(B)
+    B_columns = len(B[0])
+
+    if A_columns == B_rows:
         product = []
-        product_rows = len(matrix_one)
-        product_columns = len(matrix_two[0])
-        
-        matrix_two = transpose_matrix(matrix_two)
-        
-        for i in range(product_rows):
-            product.append([
-                (i,j)
-                for j in range(product_columns)
-            ])
+        product_rows = A_rows
+        product_columns = B_columns      
+
+        [product.append([sum([A[i][k]*B[k][j] for k in range(A_columns)]) 
+        for j in range(product_columns)]) 
+        for i in range(product_rows)]
 
         return product
 
     else:
         print('The matrix can not be multiplied.\n \
          Be sure to input the right dimensions of both matrix.')
+
+    return product
 
 def dot_product(A, B):
     """
@@ -156,15 +160,11 @@ def dot_product(A, B):
     B_rows = len(B)
     B_columns = len(B[0])
 
-    if (A_columns == B_rows)\
-    and (A_rows == 1 and B_columns == 1):
+    if (A_columns == B_rows) and (A_rows == 1 and B_columns == 1):
 
         dot_product = []
-
-        # multi-line list comprehension for dot product
-        [dot_product.append(sum(A[i][j]*B[j][i] 
-        for j in range(A_columns))) 
-        for i in range(A_rows)]
+        
+        dot_product.append(sum([A[0][i]*B[i][0] for i in range(A_columns)]))
 
         return float(dot_product[0])
         
@@ -215,9 +215,9 @@ def element_wise_product(A, B):
 
     Parameters
     ----------
-    matrix_one : list
+    A : list
         The given left-hand side matrix.
-    matrix_two : list
+    B : list
         The given right-hand side matrix.
 
     Returns
@@ -226,17 +226,18 @@ def element_wise_product(A, B):
         The element wise product of two given matrix.
 
     """
-    if (len(A[0]) == len(B[0])) \
-    and (len(A) == len(B)):
+    A_rows = len(A)
+    A_columns = len(A[0])
 
-        rows = len(A)
-        columns = len(A[0])
+    B_rows = len(B)
+    B_columns = len(B[0])
+
+    if (A_rows == B_rows) and (A_columns == B_columns):
 
         hadamard_product = []
         
-        [hadamard_product.append([A[i][j] * B[i][j]
-        for j in range(columns)])
-        for i in range(rows)]
+        [hadamard_product.append([A[i][j] * B[i][j] for j in range(A_columns)])
+        for i in range(A_rows)]
 
         return hadamard_product
 
@@ -245,10 +246,15 @@ def element_wise_product(A, B):
 
 def display(matrix):
     """Prints a `matrix` in a presentable manner."""
+
     print('\n')
     [print(row) for row in matrix]
 
 if __name__ == '__main__':
-    A = create_matrix()
-    c = transpose(A)
+    # matrix multiplication demo
+    A = [[3,1,1],[8,2,7],[6,1,8]]
+    B = [[5,3,0],[3,7,0],[7,4,4]]
+
+    
+    
     display(c)

@@ -6,29 +6,52 @@ __version__: '1.0.2'
 __author__: 'Jan Rodolf Espinas'
 
 # import local file containing matrix operations
-import matrix_operations
+import matrix_methods as mm
 
-def matrix_mul(matrix_one, matrix_two):
-    if len(matrix_one[0]) == len(matrix_two):
-        product_matrix = []
-        product_matrix_rows = len(matrix_one)
-        product_matrix_columns = len(matrix_two[0])
-        
-        matrix_two = matrix_operations.transpose(matrix_two)
-        
-        # prints indices
-        for row in range(product_matrix_rows):
-            product_matrix.append([(row,column) for column in range(product_matrix_columns)])
+def matrix_mul(A, B):
+    """
+    Returns `product` from a pair of matrix with 
+    a matching number of columns from the first matrix 
+    and rows from the second matrix.
+
+    Parameters
+    ----------
+    A : list
+        The given left-hand side matrix.
+    B : list
+        The given right-hand side matrix.
+
+    Returns
+    -------
+    product : list
+        The product of two given matrix.
+
+    """
+    A_rows = len(A)
+    A_columns = len(A[0])
+
+    B_rows = len(B)
+    B_columns = len(B[0])
+
+    if A_columns == B_rows:
+        product = []
+        product_rows = A_rows
+        product_columns = B_columns      
+
+        [product.append([sum([A[i][k]*B[k][j] for k in range(A_columns)]) 
+        for j in range(product_columns)]) 
+        for i in range(product_rows)]
+
+        return product
 
     else:
         print('The matrix can not be multiplied.\n \
          Be sure to input the right dimensions of both matrix.')
 
-    return product_matrix
+    return product
 
 if __name__ == '__main__':
-    A = matrix_operations.create_matrix()
-    B = matrix_operations.create_matrix()
+    A = [[3,1,1],[8,2,7],[6,1,8]]
+    B = [[5,3,0],[3,7,0],[7,4,4]]
     C = matrix_mul(A,B)
-    matrix_operations.display(C)
-
+    mm.display(C)
