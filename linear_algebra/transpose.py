@@ -2,11 +2,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.0.2'
+__version__: '1.1.3'
 __author__: 'Jan Rodolf Espinas'
 
 # import local file containing matrix operations
-import matrix_operations
+import matrix_methods as mm
 
 def transpose(matrix):
     """
@@ -29,15 +29,12 @@ def transpose(matrix):
 
     transposed_matrix = []
     
-    for col in range(0, columns):
-        transposed_matrix.append([
-            matrix[i][col] 
-            for i in range(rows)
-        ])
+    [transposed_matrix.append([matrix[j][i] for j in range(rows)])
+    for i in range(columns)]
 
     return transposed_matrix
 
 if __name__ == '__main__':
-    A = matrix_operations.create_matrix()
+    A = mm.create_matrix()
     transpose(A)
-    matrix_operations.display(A)
+    mm.display(A)
