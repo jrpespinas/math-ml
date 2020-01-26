@@ -5,7 +5,7 @@ from __future__ import print_function
 __version__: '1.0.1'
 __author__: 'Jan Rodolf Espinas'
 
-import matrix_operations # My linear algebra library
+import matrix_methods as mm # My linear algebra library
 
 def add(A, B):
     """
@@ -25,26 +25,24 @@ def add(A, B):
         The sum of two given matrix.
 
     """
-    if (len(A[0]) == len(B[0])) \
-    and (len(A) == len(B)):
+    A_rows = len(A)
+    A_columns = len(A[0])
 
-        rows = len(A)
-        columns = len(A[0])
+    B_rows = len(B)
+    B_columns = len(B[0])
+
+    if (A_columns == B_columns) and (A_rows == B_rows):
 
         sum = []
 
-        [sum.append([A[i][j] + B[i][j]
-        for j in range(columns)])
-        for i in range(rows)]
+        [sum.append([A[i][j] + B[i][j] for j in range(A_columns)])
+        for i in range(A_rows)]
 
         return sum
-
-    else:
-        print("Dimensions are not matched")
         
 
 if __name__ == '__main__':
-    a = matrix_operations.create_matrix()
-    b = matrix_operations.create_matrix()
+    a = mm.create_matrix()
+    b = mm.create_matrix()
     c = add(a,b)
-    matrix_operations.display(c)
+    mm.display(c)
