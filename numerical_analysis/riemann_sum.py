@@ -14,7 +14,7 @@ import seaborn as sns
 sns.set_style('dark')
 
 def delta_x(lower_bound, upper_bound, n):
-    return (lower_bound - upper_bound)/n
+    return (upper_bound - lower_bound)/n
 
 def f(x):
     return (2*(x**3)) + (x**2) - x + 1
