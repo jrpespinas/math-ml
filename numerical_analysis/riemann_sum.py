@@ -20,12 +20,11 @@ def get_delta_x(lower_bound, upper_bound, n):
 def f(x):
     return (2*(x**3)) + (x**2) - x + 1
 
-def graph_function(lower_bound, upper_bound, n):
-    x = np.linspace(lower_bound, upper_bound, n)
+def graph_function(x,n):
     y = f(x) # temporary function
     
-    plt.plot(x, y, label = r'$y = 2x^3+x^2-x+1$')
-    plt.title(r'Graph of $f(x)$')
+    plt.plot(x, y, label = f'{n} intervals')
+    plt.title(r'Graph of $y = 2x^3+x^2-x+1$')
     plt.legend()
     plt.grid()
 
@@ -41,3 +40,6 @@ if __name__ == '__main__':
         x = np.linspace(LOWER_BOUND,UPPER_BOUND,n,endpoint=False)
         riemann_sum = get_riemann_sum(x,get_delta_x(LOWER_BOUND,UPPER_BOUND,n))
         print(f'[{LOWER_BOUND},{UPPER_BOUND}] N = {n}, Riemann Sum: {riemann_sum}')
+        graph_function(x,n)
+
+    plt.show()
