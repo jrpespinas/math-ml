@@ -10,6 +10,7 @@ __author__: 'Jan Rodolf Espinas'
 import numpy as np
 import matplotlib.pyplot as plt 
 import seaborn as sns
+import error_analysis as ea
 
 sns.set_style('dark')
 
@@ -27,7 +28,15 @@ def graph_function(lower_bound, upper_bound, n):
     plt.title(r'Graph of $f(x)$')
     plt.legend()
     plt.grid()
-    plt.show()
 
+def riemann_sum(x, delta_x):
+    return sum(f(x)*delta_x)
+    
 if __name__ == '__main__':
-    graph_function(-1,1,6)
+    LOWER_BOUND = -1
+    UPPER_BOUND = 1
+    N = 10
+
+    x = np.linspace(LOWER_BOUND,UPPER_BOUND,N,endpoint=False)
+    delta_x = delta_x(LOWER_BOUND,UPPER_BOUND,N)
+    print(riemann_sum(x,delta_x))
