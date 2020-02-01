@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.0.1'
+__version__: '1.5.0'
 __author__: 'Jan Rodolf Espinas'
 
 import numpy as np
@@ -34,12 +34,12 @@ def get_riemann_sum(x, delta_x):
 if __name__ == '__main__':
     LOWER_BOUND = -1
     UPPER_BOUND = 1
-    N = [4,6,10]
+    SUBINTERVALS = [4,6,10]
 
-    for n in N:
-        x = np.linspace(LOWER_BOUND,UPPER_BOUND,n,endpoint=False)
-        riemann_sum = get_riemann_sum(x,get_delta_x(LOWER_BOUND,UPPER_BOUND,n))
-        print(f'[{LOWER_BOUND},{UPPER_BOUND}] N = {n}, Riemann Sum: {riemann_sum}')
-        graph_function(x,n)
+    for N in SUBINTERVALS:
+        x = np.linspace(LOWER_BOUND,UPPER_BOUND,N,endpoint=False)
+        riemann_sum = get_riemann_sum(x,get_delta_x(LOWER_BOUND,UPPER_BOUND,N))
+        print(f'Interval [{LOWER_BOUND},{UPPER_BOUND}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
+        graph_function(x,N)
 
     plt.show()
