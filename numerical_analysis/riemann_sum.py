@@ -17,11 +17,17 @@ sns.set_style('dark')
 def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
 
-def f(x):
+def f1(x):
     return (2*(x**3)) + (x**2) - x + 1
 
+def f2(x):
+    return (2*(x**2)) - x + 1
+
+def f3(x):
+    return np.sin(x)
+
 def graph_function(x,n):
-    y = f(x) # temporary function
+    y = f1(x) # temporary function
     
     plt.plot(x, y, label = f'{n} intervals')
     plt.title(r'Graph of $y = 2x^3+x^2-x+1$')
@@ -29,7 +35,7 @@ def graph_function(x,n):
     plt.grid()
 
 def get_riemann_sum(x, delta_x):
-    return sum(f(x)*delta_x)
+    return sum(f1(x)*delta_x)
     
 if __name__ == '__main__':
     LOWER_BOUND = -1
