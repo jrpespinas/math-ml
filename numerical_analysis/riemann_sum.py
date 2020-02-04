@@ -34,18 +34,18 @@ def graph_function(x,n):
     plt.legend()
     plt.grid()
 
-def get_riemann_sum(x, delta_x):
-    return sum(f1(x)*delta_x)
+def get_riemann_sum(function, x, delta_x):
+    return sum(function(x)*delta_x)
     
 if __name__ == '__main__':
-    LOWER_BOUND = -1
-    UPPER_BOUND = 1
-    SUBINTERVALS = [4,6,10]
+    LOWER_BOUND = [-1,0,0]
+    UPPER_BOUND = [1,2,3]
+    SUBINTERVALS = [4,6,10,16]
+    FUNCTIONS = [f1,f2,f3]
 
-    for N in SUBINTERVALS:
-        x = np.linspace(LOWER_BOUND,UPPER_BOUND,N,endpoint=False)
-        riemann_sum = get_riemann_sum(x,get_delta_x(LOWER_BOUND,UPPER_BOUND,N))
-        print(f'Interval [{LOWER_BOUND},{UPPER_BOUND}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
-        graph_function(x,N)
-
-    plt.show()
+    for i in range(len(FUNCTIONS)):
+        print(f'Function {i+1}:')
+        for N in SUBINTERVALS:
+            x = np.linspace(LOWER_BOUND[i],UPPER_BOUND[i],N,endpoint=False)
+            riemann_sum = get_riemann_sum(FUNCTIONS[i],x,get_delta_x(LOWER_BOUND[i],UPPER_BOUND[i],N))
+            print(f'Interval [{LOWER_BOUND[i]},{UPPER_BOUND[i]}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
