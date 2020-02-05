@@ -26,13 +26,16 @@ def f2(x):
 def f3(x):
     return np.sin(x)
 
-def graph_function(x,n):
-    y = f1(x) # temporary function
+def graph_function(function,x,n):
+    riemann_sum = get_riemann_sum(function,x,n)
+    y = function(x) 
     
-    plt.plot(x, y, label = f'{n} intervals')
+    plt.plot(x, y, label = f'Riemann Sum: {riemann_sum}')
     plt.title(r'Graph of $y = 2x^3+x^2-x+1$')
     plt.legend()
     plt.grid()
+
+    return riemann_sum
 
 def get_riemann_sum(function, x, delta_x):
     """
@@ -48,6 +51,7 @@ def get_riemann_sum(function, x, delta_x):
         and upper bound, and the number of intervals
     delta_x : 
         The interval
+        
     Returns
     -------
     sum : float
@@ -65,5 +69,8 @@ if __name__ == '__main__':
         print(f'Function {i+1}:')
         for N in SUBINTERVALS:
             x = np.linspace(LOWER_BOUND[i],UPPER_BOUND[i],N,endpoint=False)
-            riemann_sum = get_riemann_sum(FUNCTIONS[i],x,get_delta_x(LOWER_BOUND[i],UPPER_BOUND[i],N))
+            delta_x  = get_delta_x(LOWER_BOUND[i],UPPER_BOUND[i],N)
+            riemann_sum = graph_function(FUNCTIONS[i],x,delta_x)
             print(f'Interval [{LOWER_BOUND[i]},{UPPER_BOUND[i]}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
+        plt.show()
+    
