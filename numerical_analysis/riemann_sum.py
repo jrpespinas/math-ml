@@ -9,10 +9,7 @@ __author__: 'Jan Rodolf Espinas'
 
 import numpy as np
 import matplotlib.pyplot as plt 
-import seaborn as sns
 import error_analysis as ea
-
-sns.set_style('dark')
 
 def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
@@ -27,19 +24,8 @@ def f3(x):
     return np.sin(x), "sin(x)"
 
 def graph_function(function,x,n):
-    riemann_sum = get_riemann_sum(function,x,n)
-    y, fx = function(x) 
-    
-    plt.plot(x, y, label = f'Riemann Sum: {riemann_sum}')
-    plt.title(fr'Graph of $y = {fx}$')
-    plt.legend()
-    plt.grid()
-
-    return riemann_sum
-
-def get_riemann_sum(function, x, delta_x):
     """
-    Returns the integral `sum` given a `function` and 
+    Shows the plot of the riemann sum given a `function` and 
     the input `x` and `delta_x`
 
     Parameters
@@ -54,7 +40,37 @@ def get_riemann_sum(function, x, delta_x):
         
     Returns
     -------
-    sum : float
+    riemann_sum : float
+       The integral sum
+    """
+    riemann_sum = get_riemann_sum(function,x,n)
+    y, fx = function(x) 
+    
+    plt.plot(x, y, label = f'Riemann Sum: {riemann_sum}')
+    plt.title(fr'Graph of $y = {fx}$')
+    plt.legend()
+    plt.grid()
+
+    return riemann_sum
+
+def get_riemann_sum(function, x, delta_x):
+    """
+    Returns the riemann `sum` given a `function` and 
+    the input `x` and `delta_x`
+
+    Parameters
+    ----------
+    function : equation
+        The equation defined above f1, f2, or f3
+    x : list
+        List of numbers returned by `np.linspace` given a lower
+        and upper bound, and the number of intervals
+    delta_x : 
+        The interval
+        
+    Returns
+    -------
+    sum(fx*delta_x) : float
        The integral sum
     """
     fx, string = function(x)
