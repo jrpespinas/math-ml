@@ -18,20 +18,20 @@ def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
 
 def f1(x):
-    return (2*(x**3)) + (x**2) - x + 1
+    return (2*(x**3)) + (x**2) - x + 1, "2x^3+x^2-x+1"
 
 def f2(x):
-    return (2*(x**2)) - x + 1
+    return (2*(x**2)) - x + 1, "2x^2-x+1"
 
 def f3(x):
-    return np.sin(x)
+    return np.sin(x), "sin(x)"
 
 def graph_function(function,x,n):
     riemann_sum = get_riemann_sum(function,x,n)
-    y = function(x) 
+    y, fx = function(x) 
     
     plt.plot(x, y, label = f'Riemann Sum: {riemann_sum}')
-    plt.title(r'Graph of $y = 2x^3+x^2-x+1$')
+    plt.title(fr'Graph of $y = {fx}$')
     plt.legend()
     plt.grid()
 
@@ -57,7 +57,8 @@ def get_riemann_sum(function, x, delta_x):
     sum : float
        The integral sum
     """
-    return sum(function(x)*delta_x)
+    fx, string = function(x)
+    return sum(fx*delta_x)
     
 if __name__ == '__main__':
     LOWER_BOUND = [-1,0,0]
