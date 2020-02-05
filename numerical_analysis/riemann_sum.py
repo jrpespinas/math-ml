@@ -35,6 +35,24 @@ def graph_function(x,n):
     plt.grid()
 
 def get_riemann_sum(function, x, delta_x):
+    """
+    Returns the integral `sum` given a `function` and 
+    the input `x` and `delta_x`
+
+    Parameters
+    ----------
+    function : equation
+        The equation defined above f1, f2, or f3
+    x : list
+        List of numbers returned by `np.linspace` given a lower
+        and upper bound, and the number of intervals
+    delta_x : 
+        The interval
+    Returns
+    -------
+    sum : float
+       The integral sum
+    """
     return sum(function(x)*delta_x)
     
 if __name__ == '__main__':
