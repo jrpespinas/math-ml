@@ -23,6 +23,9 @@ def f2(x):
 def f3(x):
     return np.sin(x), "sin(x)"
 
+def f4(x):
+    return x**2, "x^2"
+
 def graph_function(function,x,n):
     """
     Shows the plot of the riemann sum given a `function` and 
@@ -40,7 +43,7 @@ def graph_function(function,x,n):
         
     Returns
     -------
-    riemann_sum : float
+    float
        The integral sum
     """
     riemann_sum = get_riemann_sum(function,x,n)
@@ -70,17 +73,17 @@ def get_riemann_sum(function, x, delta_x):
         
     Returns
     -------
-    sum(fx*delta_x) : float
+    float
        The integral sum
     """
     fx, string = function(x)
     return sum(fx*delta_x)
     
 if __name__ == '__main__':
-    LOWER_BOUND = [-1,0,0]
-    UPPER_BOUND = [1,2,3]
-    SUBINTERVALS = [4,6,10,16]
-    FUNCTIONS = [f1,f2,f3]
+    LOWER_BOUND = [0, 0]
+    UPPER_BOUND = [3, 5]
+    SUBINTERVALS = [9, 15, 20, 50, 100, 200]
+    FUNCTIONS = [f4,f4]
 
     for i in range(len(FUNCTIONS)):
         print(f'Function {i+1}:')
