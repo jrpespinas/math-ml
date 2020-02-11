@@ -29,12 +29,14 @@ def transpose(matrix):
 
     transposed_matrix = []
     
-    [transposed_matrix.append([matrix[j][i] for j in range(rows)])
-    for i in range(columns)]
+    [transposed_matrix.append([matrix[i][j] for i in range(rows)])
+    for j in range(columns)]
 
     return transposed_matrix
 
 if __name__ == '__main__':
     A = mm.create_matrix()
-    transpose(A)
+    mm.display(A)
+    print('\n')
+    A = transpose(A)
     mm.display(A)
