@@ -15,7 +15,7 @@ def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
 
 def f(x):
-    return x**2
+    return np.sin(x)
 
 def get_riemann_sum(x, delta_x):
     """
@@ -71,14 +71,14 @@ def riemann_integral(lower_bound,upper_bound,subintervals):
         plt.grid()
         plt.legend()
 
-    fig.suptitle(r"Riemann Integral of $x^2$")
+    fig.suptitle(r"Riemann Integral of $sin(x)$")
     plt.show()
 
     
 if __name__ == '__main__':
 
     # Type in the command line:
-    # python3 numerical_analysis/riemann_sum.py -lb 0 -ub 5 -sub 10 20 50 100 
+    # python3 numerical_analysis/riemann_integral.py -lb 0 -ub 5 -sub 10 20 50 100 
 
     parser = argparse.ArgumentParser(description="Riemann Integrals")
     parser.add_argument(
