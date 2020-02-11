@@ -10,6 +10,7 @@ __author__: 'Jan Rodolf Espinas'
 import numpy as np
 import matplotlib.pyplot as plt 
 import error_analysis as ea
+import argparse
 
 def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
@@ -80,17 +81,35 @@ def get_riemann_sum(function, x, delta_x):
     return sum(fx*delta_x)
     
 if __name__ == '__main__':
-    LOWER_BOUND = [0, 0]
-    UPPER_BOUND = [3, 5]
-    SUBINTERVALS = [9, 15, 20, 50, 100, 200]
-    FUNCTIONS = [f4,f4]
+    parser = argparse.ArgumentParser(description="Riemann Integrals")
+    parser.add_argument(
+        '-lb', 
+        '--LOWER_BOUND', 
+        type=int,
+        help='Lower Bound'
+    )
+    parser.add_argument(
+        '-ub', 
+        '--UPPER_BOUND', 
+        type=int,
+        help='Upper Bound'
+    )
+    parser.add_argument(
+        '-sub', 
+        '--SUBINTERVALS',
+        nargs='+', 
+        type=int,
+        help='Subintervals'
+    )
+    args = vars(parser.parse_args())
 
-    for i in range(len(FUNCTIONS)):
-        print(f'Function {i+1}:')
-        for N in SUBINTERVALS:
-            x = np.linspace(LOWER_BOUND[i],UPPER_BOUND[i],N,endpoint=False)
-            delta_x  = get_delta_x(LOWER_BOUND[i],UPPER_BOUND[i],N)
-            riemann_sum = graph_function(FUNCTIONS[i],x,delta_x)
-            print(f'Interval [{LOWER_BOUND[i]},{UPPER_BOUND[i]}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
-        plt.show()
-    
+    LOWER_BOUND = args['LOWER_BOUND']
+    UPPER_BOUND = args['UPPER_BOUND']
+    SUBINTERVALS = args['SUBINTERVALS']
+
+    for N in SUBINTERVALS:
+        x = np.linspace(LOWER_BOUND,UPPER_BOUND,N,endpoint=False)
+        delta_x  = get_delta_x(LOWER_BOUND,UPPER_BOUND,N)
+        riemann_sum = graph_function(f4,x,delta_x)
+        print(f'Interval [{LOWER_BOUND},{UPPER_BOUND}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
+    plt.show()
