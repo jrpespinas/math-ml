@@ -15,57 +15,16 @@ import argparse
 def get_delta_x(lower_bound, upper_bound, n):
     return (upper_bound-lower_bound) / n
 
-def f1(x):
-    return (2*(x**3)) + (x**2) - x + 1
-
-def f2(x):
-    return (2*(x**2)) - x + 1
-
-def f3(x):
-    return np.sin(x)
-
-def f4(x):
+def f(x):
     return x**2
 
-def graph_function(function,x,n):
-    """
-    Shows the plot of the riemann sum given a `function` and 
-    the input `x` and `delta_x`
-
-    Parameters
-    ----------
-    function : equation
-        The equation defined above f1, f2, or f3
-    x : list
-        List of numbers returned by `np.linspace` given a lower
-        and upper bound, and the number of intervals
-    delta_x : 
-        The interval
-        
-    Returns
-    -------
-    float
-       The integral sum
-    """
-    riemann_sum = get_riemann_sum(function,x,n)
-    y = function(x) 
-    
-    plt.plot(x, y, label = f'Riemann Sum: {riemann_sum}')
-    plt.title(fr'Graph of $y = f(x)$')
-    plt.legend()
-    plt.grid()
-
-    return riemann_sum
-
-def get_riemann_sum(function, x, delta_x):
+def get_riemann_sum(x, delta_x):
     """
     Returns the riemann `sum` given a `function` and 
     the input `x` and `delta_x`
 
     Parameters
     ----------
-    function : equation
-        The equation defined above f1, f2, or f3
     x : list
         List of numbers returned by `np.linspace` given a lower
         and upper bound, and the number of intervals
@@ -77,7 +36,48 @@ def get_riemann_sum(function, x, delta_x):
     float
        The integral sum
     """
-    return sum(function(x)*delta_x)
+    return sum(f(x)*delta_x)
+
+def riemann_integral(lower_bound,upper_bound,subintervals):
+    """
+    Shows the plot of the riemann sum given a `function` and 
+    the input `x` and `delta_x`
+
+    Parameters
+    ----------
+    x : list
+        List of numbers returned by `np.linspace` given a lower
+        and upper bound, and the number of intervals
+    n : 
+        The interval
+        
+    Returns
+    -------
+    float
+       The integral sum
+    """
+
+    fig=plt.figure()
+    for i in range(len(subintervals)):
+        x = np.linspace(lower_bound,upper_bound,subintervals[i],endpoint=False)
+        delta_x = get_delta_x(lower_bound,upper_bound,subintervals[i])
+        riemann_sum = get_riemann_sum(x,delta_x)
+        y=f(x)
+        dims = 221+i
+        plt.subplot(dims)
+        plt.plot(x, y, color='C0')
+        plt.bar(
+            x, y, color="C"+str(i), 
+            width=(upper_bound-lower_bound)/subintervals[i], 
+            alpha=0.2, align='edge', edgecolor="C"+str(i),
+            label = f"{riemann_sum}")
+        plt.title(f'N = {subintervals[i]}')
+        plt.grid()
+        plt.legend()
+
+    fig.suptitle(r"Riemann Integral of $x^2$")
+    plt.show()
+
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Riemann Integrals")
@@ -106,9 +106,7 @@ if __name__ == '__main__':
     UPPER_BOUND = args['UPPER_BOUND']
     SUBINTERVALS = args['SUBINTERVALS']
 
-    for N in SUBINTERVALS:
-        x = np.linspace(LOWER_BOUND,UPPER_BOUND,N,endpoint=False)
-        delta_x  = get_delta_x(LOWER_BOUND,UPPER_BOUND,N)
-        riemann_sum = graph_function(f4,x,delta_x)
-        print(f'Interval [{LOWER_BOUND},{UPPER_BOUND}], Subintervals = {N}, Riemann Sum: {riemann_sum}')
-    plt.show()
+    if len(SUBINTERVALS) == 4:
+        riemann_integral(LOWER_BOUND,UPPER_BOUND,SUBINTERVALS)
+    else:
+        print("input only four subintervals")
