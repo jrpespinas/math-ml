@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-__version__: '1.5.0'
+__version__: '2.0.0'
 __author__: 'Jan Rodolf Espinas'
 
 import numpy as np
@@ -80,6 +80,10 @@ def riemann_integral(lower_bound,upper_bound,subintervals):
 
     
 if __name__ == '__main__':
+
+    # Type in the command line:
+    # python3 numerical_analysis/riemann_sum.py -lb 0 -ub 5 -sub 10 20 50 100 
+    
     parser = argparse.ArgumentParser(description="Riemann Integrals")
     parser.add_argument(
         '-lb', 
