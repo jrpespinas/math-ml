@@ -40,9 +40,11 @@ def add(A, B):
 
         return sum
         
-
-if __name__ == '__main__':
+def main():
     a = mm.create_matrix()
     b = mm.create_matrix()
     c = add(a,b)
     mm.display(c)
+
+if __name__ == '__main__':
+    main()

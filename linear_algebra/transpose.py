@@ -34,9 +34,13 @@ def transpose(matrix):
 
     return transposed_matrix
 
-if __name__ == '__main__':
+
+def main():
     A = mm.create_matrix()
     mm.display(A)
     print('\n')
     A = transpose(A)
     mm.display(A)
+    
+if __name__ == '__main__':
+    main()

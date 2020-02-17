@@ -248,7 +248,8 @@ def display(matrix):
     """Prints a `matrix` in a presentable manner."""
     [print(row) for row in matrix]
 
-if __name__ == '__main__':
+
+def main():
     # MATRIX-MATRIX MULTIPLICATION demo
     A = [[3,1,1],[8,2,7],[6,1,8]]
     B = [[5,3,0],[3,7,0],[7,4,4]]
@@ -360,3 +361,6 @@ if __name__ == '__main__':
     """)
     print("a.T + b.T")
     display(c)
+    
+if __name__ == '__main__':
+    main()

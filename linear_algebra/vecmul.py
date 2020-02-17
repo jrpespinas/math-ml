@@ -81,10 +81,13 @@ def outer_product(A, B):
         print("dimensions of vector do not match.")
 
 
-if __name__ == '__main__':
+def main():
     A = mm.create_matrix() # [[1,2,3]]
     B = mm.create_matrix() #[[1],[2],[3]]
     C = dot_product(A,B)
     print(C)
+    
+if __name__ == '__main__':
+    main()
     
     

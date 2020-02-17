@@ -50,8 +50,11 @@ def matrix_mul(A, B):
 
     return product
 
-if __name__ == '__main__':
+def main():
     A = [[3,1,1],[8,2,7],[6,1,8]]
     B = [[5,3,0],[3,7,0],[7,4,4]]
     C = matrix_mul(A,B)
     mm.display(C)
+    
+if __name__ == '__main__':
+    main()
