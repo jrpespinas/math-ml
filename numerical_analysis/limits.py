@@ -13,8 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import seaborn as sns  
 
-if __name__ == '__main__':
-
+def main():
     x1 = np.linspace(-10, 10, 101)
     x2 = np.linspace(-10, 10, 101)
 
@@ -34,3 +33,7 @@ if __name__ == '__main__':
     plt.title('Limits: Symmetric on y-axis')
     plt.grid()
     plt.show()
+
+
+if __name__ == '__main__':
+    main()

@@ -13,5 +13,8 @@ def absolute_error(true_fx, approximate_fx):
 def relative_error(true_fx, approximate_fx):
     return absolute_error(true_fx, approximate_fx)/abs(true_fx)
 
-if __name__ == '__main__':
+def main():
     print(relative_error(10,9))
+
+if __name__ == '__main__':
+    main()
