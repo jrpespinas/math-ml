@@ -247,7 +247,14 @@ def element_wise_product(A, B):
         print("Dimensions are not matched")
 
 def display(matrix):
-    """Prints a `matrix` in a presentable manner."""
+    """
+    Prints a matrix in a presentable manner.
+
+    Parameters
+    ----------
+    matrix : list
+        a 2-dimensional matrix
+    """
     [print(row) for row in matrix]
 
 
