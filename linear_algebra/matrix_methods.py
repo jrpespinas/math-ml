@@ -26,9 +26,11 @@ def create_matrix():
 
     input_matrix = []
 
-    [input_matrix.append([float(input(f'M[{i+1},{j+1}] = ')) 
-    for j in range(columns)])
-    for i in range(0,rows)]
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            row.append(float(input(f'[{i+1},{j+1}]:')))
+        input_matrix.append(row)
 
     return input_matrix
 
