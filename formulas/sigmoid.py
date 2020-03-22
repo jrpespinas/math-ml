@@ -8,6 +8,19 @@ __author__: 'Jan Rodolf Espinas'
 import numpy as np
 
 def sigmoid(x):
+    '''
+    Returns the probability value given a value `x`
+
+    Parameters
+    ----------
+    x :
+        Any integer or float values
+
+    Return
+    ------
+    float : 
+        The output probability
+    '''
     return 1 / (1 + np.exp(x))
 
 def main():
