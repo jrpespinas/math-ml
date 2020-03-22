@@ -55,9 +55,12 @@ def transpose(matrix):
 
     transposed_matrix = []
     
-    [transposed_matrix.append([matrix[j][i] for j in range(rows)])
-    for i in range(columns)]
-
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            row.append(matrix[j][i])
+        transposed_matrix.append(row)
+    
     return transposed_matrix
 
 def add(A, B):
@@ -88,8 +91,11 @@ def add(A, B):
 
         sum = []
 
-        [sum.append([A[i][j] + B[i][j] for j in range(A_columns)])
-        for i in range(A_rows)]
+        for i in range(A_rows):
+            row = []
+            for j in range(A_columns):
+                row.append(A[i][j] + B[i][j])
+            sum.append(row)
 
         return sum
 
