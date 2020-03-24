@@ -135,10 +135,10 @@ def matrix_mul(A, B):
         for i in range(product_rows):
             row = []
             for j in range(product_columns):
-                linear_combination = 0
+                inner_product = []
                 for k in range(A_columns):
-                    linear_combination += A[i][k]*B[k][j]
-                row.append(linear_combination)
+                    inner_product.append(A[i][k]*B[k][j])
+                row.append(sum(inner_product))
             product.append(row)
             
         return product
