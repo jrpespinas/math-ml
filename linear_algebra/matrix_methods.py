@@ -89,15 +89,15 @@ def add(A, B):
 
     if (A_columns == B_columns) and (A_rows == B_rows):
 
-        sum = []
+        matrix = []
 
         for i in range(A_rows):
             row = []
             for j in range(A_columns):
                 row.append(A[i][j] + B[i][j])
-            sum.append(row)
+            matrix.append(row)
 
-        return sum
+        return matrix
 
     else:
         print("Dimensions are not matched")
@@ -131,11 +131,16 @@ def matrix_mul(A, B):
         product = []
         product_rows = A_rows
         product_columns = B_columns      
-
-        [product.append([sum([A[i][k]*B[k][j] for k in range(A_columns)]) 
-        for j in range(product_columns)]) 
-        for i in range(product_rows)]
-
+        
+        for i in range(product_rows):
+            row = []
+            for j in range(product_columns):
+                linear_combination = 0
+                for k in range(A_columns):
+                    linear_combination += A[i][k]*B[k][j]
+                row.append(linear_combination)
+            product.append(row)
+            
         return product
 
     else:
