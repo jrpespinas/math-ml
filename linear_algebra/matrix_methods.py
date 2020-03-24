@@ -102,7 +102,7 @@ def add(A, B):
     else:
         print("Dimensions are not matched")
 
-def matrix_mul(A, B):
+def matmul(A, B):
     """
     Returns `product` from a pair of matrix with 
     a matching number of columns from the first matrix 
