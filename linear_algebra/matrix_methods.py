@@ -94,7 +94,7 @@ def add(A, B):
         for i in range(A_rows):
             row = []
             for j in range(A_columns):
-                row.append(A[i][j] + B[i][j])
+                row.append(sum(A[i][j],B[i][j]))
             matrix.append(row)
 
         return matrix
