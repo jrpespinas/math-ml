@@ -211,10 +211,12 @@ def outer_product(A, B):
     if A_columns == 1 and B_rows == 1:
     
         outer_product = []
-
-        # multi-line list comprehension for outer product
-        [outer_product.append([A[i][0] * B[0][j] for j in range(B_columns)]) 
-        for i in range(A_rows)]
+        
+        for i in range(A_rows):
+            row = []
+            for j in range(B_columns):
+                row.append(A[i][0] * B[0][j])
+            outer_product.append(row)
 
         return outer_product
 
@@ -250,8 +252,11 @@ def element_wise_product(A, B):
 
         hadamard_product = []
         
-        [hadamard_product.append([A[i][j] * B[i][j] for j in range(A_columns)])
-        for i in range(A_rows)]
+        for i in range(A_rows):
+            row = []
+            for j in range(A_columns):
+                row.append(A[i][j] * B[i][j])
+            hadamard_product.append(row)
 
         return hadamard_product
 
