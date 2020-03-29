@@ -177,9 +177,10 @@ def dot_product(A, B):
 
         dot_product = []
         
-        dot_product.append(sum([A[0][i]*B[i][0] for i in range(A_columns)]))
+        for i in range(A_columns):
+            dot_product.append(A[0][i]*B[i][0])
 
-        return float(dot_product[0])
+        return sum(dot_product)
         
     else:
         print("dimensions of vector do not match.")
