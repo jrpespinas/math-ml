@@ -1,6 +1,6 @@
 Mathematics for Machine Learning
 ===
-This repository contains exercises, lectures, and homework in various math subjects such as, linear algebra, calculus, etc. The theories will be applied using python and as much as possible avoid numpy to fully understand the concepts.
+This repository contains exercises, lectures, and homework in various math subjects such as, linear algebra, calculus, etc. The theories will be applied using python. This repository may also contain solutions to problems in Project Euler.
 
 ## License
    ```
